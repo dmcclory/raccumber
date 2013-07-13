@@ -1,15 +1,15 @@
-Given /that I have an object named (.*)/ do |name|
+Given /that I have an object with text (.*)/ do |name|
   name
 end
 
-And /I have a second object named (.*)/ do |name|
+And /I have a second object with text (.*)/ do |name|
   name
 end
 
-When /I have a combine them/ do |name|
+When /I combine them/ do |name|
   name
 end
 
-Then /I have a different object named (.*)/ do |name|
+Then /I get a third object with text (.*)/ do |name|
   name
 end
