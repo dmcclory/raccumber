@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'rake'
+
+require './lib/raccumber/step_definitions'
+
+step_definition_files = FileList.new "features/**/*.rb"
+
+step_definition_files.each do |s|
+  load s
+end
+
+puts @@regex_block_pairs.inspect
