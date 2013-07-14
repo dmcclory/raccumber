@@ -14,7 +14,7 @@ class FeatureScanner
       when /\AScenario: /
         tokens << [:SCEN_KEYWORD, $&]
         text.slice!(0, $&.size)
-      when /\AGiven: |\AWhen: |\AAnd: |\AThen: /
+      when /\AGiven|\AWhen|\AAnd|\AThen/m
         tokens << [:STEP_KEYWORD, $&]
         text.slice!(0, $&.size)
       when /\A\n/ 
