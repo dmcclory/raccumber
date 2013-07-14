@@ -12,10 +12,13 @@ module_eval(<<'...end feature_parser.racc/module_eval...', 'feature_parser.racc'
 
 require 'feature'
 require 'scenario'
+require 'step_definition'
+require 'pry'
 
 def parse(tokens)
   @tokens = tokens
   @result = Array.new
+  @steps = Array.new
   do_parse
   @result
 end
@@ -123,70 +126,70 @@ Racc_debug_parser = false
 
 module_eval(<<'.,.,', 'feature_parser.racc', 4)
   def _reduce_1(val, _values, result)
-     @result.push Feature.new  
+      @result.push Feature.new  
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 5)
   def _reduce_2(val, _values, result)
-     @result.push Feature.new 
+      @result.push Feature.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 7)
   def _reduce_3(val, _values, result)
-     @result.push val 
+     
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 8)
   def _reduce_4(val, _values, result)
-     @result.push val 
+     
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 10)
   def _reduce_5(val, _values, result)
-     @result.push val 
+     
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 11)
   def _reduce_6(val, _values, result)
-     @result.push val 
+     
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 13)
   def _reduce_7(val, _values, result)
-     @result.push Scenario.new 
+      @result.push Scenario.new(@steps); @steps = Array.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 14)
   def _reduce_8(val, _values, result)
-     @result.push Scenario.new 
+      @result.push Scenario.new(@steps); @steps = Array.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 16)
   def _reduce_9(val, _values, result)
-     @result.push val 
+      @steps << StepDefinition.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 17)
   def _reduce_10(val, _values, result)
-     @result.push val 
+      @steps << StepDefinition.new  
     result
   end
 .,.,

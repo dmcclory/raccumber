@@ -1,5 +1,6 @@
 class Scenario
 
-  def initialize
+  def initialize(steps)
+    @steps = steps
   end
 end

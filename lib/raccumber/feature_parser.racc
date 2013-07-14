@@ -2,20 +2,20 @@ class Raccumber::FeatureParser
 
 rule
 
-feature : feature_title { @result.push Feature.new  }
-        | feature_title scenario { @result.push Feature.new }
+feature : feature_title {  @result.push Feature.new  }
+        | feature_title scenario {  @result.push Feature.new }
 
-feature_title : FEAT_KEYWORD TEXT { @result.push val }
-              | FEAT_KEYWORD TEXT description { @result.push val }
+feature_title : FEAT_KEYWORD TEXT { }
+              | FEAT_KEYWORD TEXT description { }
 
-description: TEXT { @result.push val }
-           | description TEXT { @result.push val }
+description: TEXT { }
+           | description TEXT { }
 
-scenario : SCEN_KEYWORD TEXT step_definition scenario { @result.push Scenario.new }
-         | SCEN_KEYWORD TEXT step_definition { @result.push Scenario.new }
+scenario : SCEN_KEYWORD TEXT step_definition scenario {  @result.push Scenario.new(@steps); @steps = Array.new }
+         | SCEN_KEYWORD TEXT step_definition {  @result.push Scenario.new(@steps); @steps = Array.new }
 
-step_definition : STEP_KEYWORD TEXT { @result.push val }
-                | STEP_KEYWORD TEXT step_definition { @result.push val }
+step_definition : STEP_KEYWORD TEXT {  @steps << StepDefinition.new }
+                | STEP_KEYWORD TEXT step_definition {  @steps << StepDefinition.new  }
 
 end
 
@@ -23,10 +23,13 @@ end
 
 require 'feature'
 require 'scenario'
+require 'step_definition'
+require 'pry'
 
 def parse(tokens)
   @tokens = tokens
   @result = Array.new
+  @steps = Array.new
   do_parse
   @result
 end
