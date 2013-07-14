@@ -2,20 +2,20 @@ class Raccumber::FeatureParser
 
 rule
 
-feature : feature_title
-        | feature_title scenario
+feature : feature_title { @result.push val  }
+        | feature_title scenario { @result.push val }
 
-feature_title : FEAT_KEYWORD TEXT 
-              | FEAT_KEYWORD TEXT description
+feature_title : FEAT_KEYWORD TEXT { @result.push val }
+              | FEAT_KEYWORD TEXT description { @result.push val }
 
-description: TEXT
-           | description TEXT
+description: TEXT { @result.push val }
+           | description TEXT { @result.push val }
 
-scenario : SCEN_KEYWORD TEXT step_definition scenario
-         | SCEN_KEYWORD TEXT step_definition
+scenario : SCEN_KEYWORD TEXT step_definition scenario { @result.push val }
+         | SCEN_KEYWORD TEXT step_definition { @result.push val }
 
-step_definition : STEP_KEYWORD TEXT
-                | STEP_KEYWORD TEXT step_definition
+step_definition : STEP_KEYWORD TEXT { @result.push val }
+                | STEP_KEYWORD TEXT step_definition { @result.push val }
 
 end
 
@@ -23,7 +23,9 @@ end
 
 def parse(tokens)
   @tokens = tokens
+  @result = Array.new
   do_parse
+  @result
 end
 
 def next_token

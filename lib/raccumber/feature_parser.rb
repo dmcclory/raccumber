@@ -12,7 +12,9 @@ module_eval(<<'...end feature_parser.racc/module_eval...', 'feature_parser.racc'
 
 def parse(tokens)
   @tokens = tokens
+  @result = Array.new
   do_parse
+  @result
 end
 
 def next_token
@@ -53,16 +55,16 @@ racc_goto_default = [
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  1, 7, :_reduce_none,
-  2, 7, :_reduce_none,
-  2, 8, :_reduce_none,
-  3, 8, :_reduce_none,
-  1, 10, :_reduce_none,
-  2, 10, :_reduce_none,
-  4, 9, :_reduce_none,
-  3, 9, :_reduce_none,
-  2, 11, :_reduce_none,
-  3, 11, :_reduce_none ]
+  1, 7, :_reduce_1,
+  2, 7, :_reduce_2,
+  2, 8, :_reduce_3,
+  3, 8, :_reduce_4,
+  1, 10, :_reduce_5,
+  2, 10, :_reduce_6,
+  4, 9, :_reduce_7,
+  3, 9, :_reduce_8,
+  2, 11, :_reduce_9,
+  3, 11, :_reduce_10 ]
 
 racc_reduce_n = 11
 
@@ -116,25 +118,75 @@ Racc_debug_parser = false
 
 # reduce 0 omitted
 
-# reduce 1 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 4)
+  def _reduce_1(val, _values, result)
+     @result.push val  
+    result
+  end
+.,.,
 
-# reduce 2 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 5)
+  def _reduce_2(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 3 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 7)
+  def _reduce_3(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 4 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 8)
+  def _reduce_4(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 5 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 10)
+  def _reduce_5(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 6 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 11)
+  def _reduce_6(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 7 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 13)
+  def _reduce_7(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 8 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 14)
+  def _reduce_8(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 9 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 16)
+  def _reduce_9(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
-# reduce 10 omitted
+module_eval(<<'.,.,', 'feature_parser.racc', 17)
+  def _reduce_10(val, _values, result)
+     @result.push val 
+    result
+  end
+.,.,
 
 def _reduce_none(val, _values, result)
   val[0]
