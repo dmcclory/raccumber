@@ -1,0 +1,31 @@
+class Raccumber::FeatureParser
+
+rule
+
+feature : feature_title
+        | feature_title scenario
+
+feature_title : FEAT_KEYWORD TEXT 
+              | FEAT_KEYWORD TEXT description
+
+description: TEXT
+           | description TEXT
+
+scenario : SCEN_KEYWORD TEXT step_definition scenario
+         | SCEN_KEYWORD TEXT step_definition
+
+step_definition : STEP_KEYWORD TEXT
+                | STEP_KEYWORD TEXT step_definition
+
+end
+
+---- inner ----
+
+def parse(tokens)
+  @tokens = tokens
+  do_parse
+end
+
+def next_token
+  @tokens.shift
+end

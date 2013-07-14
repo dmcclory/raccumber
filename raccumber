@@ -3,6 +3,7 @@ require 'rake'
 
 require_relative './lib/raccumber/step_definitions'
 require_relative './lib/raccumber/feature_scanner'
+require_relative './lib/raccumber/feature_parser'
 
 step_definition_files = FileList.new "features/**/*.rb"
 
@@ -18,4 +19,7 @@ features.each do |f|
   text = File.read f
   scenarios = fs.tokenize text
   puts scenarios.inspect
+  puts scenarios.class
+  parsed_result = Raccumber::FeatureParser.new.parse scenarios
+  puts parsed_result.inspect
 end
