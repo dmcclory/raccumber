@@ -2,8 +2,8 @@ class Raccumber::FeatureParser
 
 rule
 
-feature : feature_title { @result.push val  }
-        | feature_title scenario { @result.push val }
+feature : feature_title { @result.push Feature.new  }
+        | feature_title scenario { @result.push Feature.new }
 
 feature_title : FEAT_KEYWORD TEXT { @result.push val }
               | FEAT_KEYWORD TEXT description { @result.push val }
@@ -11,8 +11,8 @@ feature_title : FEAT_KEYWORD TEXT { @result.push val }
 description: TEXT { @result.push val }
            | description TEXT { @result.push val }
 
-scenario : SCEN_KEYWORD TEXT step_definition scenario { @result.push val }
-         | SCEN_KEYWORD TEXT step_definition { @result.push val }
+scenario : SCEN_KEYWORD TEXT step_definition scenario { @result.push Scenario.new }
+         | SCEN_KEYWORD TEXT step_definition { @result.push Scenario.new }
 
 step_definition : STEP_KEYWORD TEXT { @result.push val }
                 | STEP_KEYWORD TEXT step_definition { @result.push val }
@@ -20,6 +20,9 @@ step_definition : STEP_KEYWORD TEXT { @result.push val }
 end
 
 ---- inner ----
+
+require 'feature'
+require 'scenario'
 
 def parse(tokens)
   @tokens = tokens

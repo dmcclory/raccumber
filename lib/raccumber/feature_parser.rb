@@ -10,6 +10,9 @@ module Raccumber
 
 module_eval(<<'...end feature_parser.racc/module_eval...', 'feature_parser.racc', 23)
 
+require 'feature'
+require 'scenario'
+
 def parse(tokens)
   @tokens = tokens
   @result = Array.new
@@ -120,14 +123,14 @@ Racc_debug_parser = false
 
 module_eval(<<'.,.,', 'feature_parser.racc', 4)
   def _reduce_1(val, _values, result)
-     @result.push val  
+     @result.push Feature.new  
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 5)
   def _reduce_2(val, _values, result)
-     @result.push val 
+     @result.push Feature.new 
     result
   end
 .,.,
@@ -162,14 +165,14 @@ module_eval(<<'.,.,', 'feature_parser.racc', 11)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 13)
   def _reduce_7(val, _values, result)
-     @result.push val 
+     @result.push Scenario.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 14)
   def _reduce_8(val, _values, result)
-     @result.push val 
+     @result.push Scenario.new 
     result
   end
 .,.,
