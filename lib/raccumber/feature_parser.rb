@@ -19,6 +19,7 @@ def parse(tokens)
   @tokens = tokens
   @result = Array.new
   @steps = Array.new
+  @scenarios = Array.new
   do_parse
   @result
 end
@@ -128,28 +129,28 @@ Racc_debug_parser = false
 
 module_eval(<<'.,.,', 'feature_parser.racc', 4)
   def _reduce_1(val, _values, result)
-    puts val.inspect;  @result.push Feature.new  
+     @result.push Feature.new  
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 5)
   def _reduce_2(val, _values, result)
-    puts val.inspect;  @result.push Feature.new 
+     @result.push Feature.new(@scenarios); @scenarios = Array.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 7)
   def _reduce_3(val, _values, result)
-    puts val.inspect; 
+     
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 8)
   def _reduce_4(val, _values, result)
-    puts val.inspect; 
+     
     result
   end
 .,.,
@@ -174,7 +175,7 @@ module_eval(<<'.,.,', 'feature_parser.racc', 11)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 18)
   def _reduce_9(val, _values, result)
-    puts val.inspect;  @result.push Scenario.new(@steps); @steps = Array.new 
+     @scenarios.push Scenario.new(@steps); @steps = Array.new 
     result
   end
 .,.,
@@ -185,7 +186,7 @@ module_eval(<<'.,.,', 'feature_parser.racc', 18)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 24)
   def _reduce_12(val, _values, result)
-    puts val.inspect;  @steps << StepDefinition.new(val[1]) 
+     @steps << StepDefinition.new(val[1].strip) 
     result
   end
 .,.,

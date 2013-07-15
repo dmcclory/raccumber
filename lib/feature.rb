@@ -1,6 +1,9 @@
 class Feature
 
-  def initialize
+  def initialize(scenarios)
+    @scenarios = scenarios
   end
+
+  attr_reader :scenarios
 
 end
