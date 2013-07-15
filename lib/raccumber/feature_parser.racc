@@ -22,7 +22,7 @@ step_definition_list
   : step_definition
   | step_definition_list step_definition         
 
-step_definition : STEP_KEYWORD TEXT {puts val.inspect;  @steps << StepDefinition.new }
+step_definition : STEP_KEYWORD TEXT {puts val.inspect;  @steps << StepDefinition.new(val[1]) }
 
 end
 

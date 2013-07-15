@@ -1,6 +1,6 @@
 class StepDefinition
-  def initialize
-
+  def initialize(step_text)
+    @text = step_text
   end
 
 end

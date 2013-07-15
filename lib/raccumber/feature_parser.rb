@@ -185,7 +185,7 @@ module_eval(<<'.,.,', 'feature_parser.racc', 18)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 24)
   def _reduce_12(val, _values, result)
-    puts val.inspect;  @steps << StepDefinition.new 
+    puts val.inspect;  @steps << StepDefinition.new(val[1]) 
     result
   end
 .,.,
