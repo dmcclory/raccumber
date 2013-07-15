@@ -2,20 +2,27 @@ class Raccumber::FeatureParser
 
 rule
 
-feature : feature_title {  @result.push Feature.new  }
-        | feature_title scenario {  @result.push Feature.new }
+feature : feature_title {puts val.inspect;  @result.push Feature.new  }
+        | feature_title scenario_list {puts val.inspect;  @result.push Feature.new }
 
-feature_title : FEAT_KEYWORD TEXT { }
-              | FEAT_KEYWORD TEXT description { }
+feature_title : FEAT_KEYWORD TEXT {puts val.inspect; }
+              | FEAT_KEYWORD TEXT description {puts val.inspect; }
 
 description: TEXT { }
            | description TEXT { }
 
-scenario : SCEN_KEYWORD TEXT step_definition scenario {  @result.push Scenario.new(@steps); @steps = Array.new }
-         | SCEN_KEYWORD TEXT step_definition {  @result.push Scenario.new(@steps); @steps = Array.new }
+scenario_list
+  : scenario
+  | scenario_list scenario
 
-step_definition : STEP_KEYWORD TEXT {  @steps << StepDefinition.new }
-                | STEP_KEYWORD TEXT step_definition {  @steps << StepDefinition.new  }
+scenario 
+  : SCEN_KEYWORD TEXT step_definition_list {puts val.inspect;  @result.push Scenario.new(@steps); @steps = Array.new }
+
+step_definition_list 
+  : step_definition
+  | step_definition_list step_definition         
+
+step_definition : STEP_KEYWORD TEXT {puts val.inspect;  @steps << StepDefinition.new }
 
 end
 

@@ -8,7 +8,7 @@ require 'racc/parser.rb'
 module Raccumber
   class FeatureParser < Racc::Parser
 
-module_eval(<<'...end feature_parser.racc/module_eval...', 'feature_parser.racc', 23)
+module_eval(<<'...end feature_parser.racc/module_eval...', 'feature_parser.racc', 30)
 
 require 'feature'
 require 'scenario'
@@ -30,34 +30,32 @@ end
 ##### State transition tables begin ###
 
 racc_action_table = [
-     3,     4,     6,     7,     8,     9,    11,    13,    14,     6,
-    16,    13 ]
+     3,     4,     7,     8,     9,     7,    11,    13,    16,    17,
+    16,    19 ]
 
 racc_action_check = [
-     0,     1,     2,     3,     4,     6,     7,     9,    10,    12,
-    13,    16 ]
+     0,     1,     2,     3,     4,     5,     7,     8,    11,    12,
+    14,    16 ]
 
 racc_action_pointer = [
-    -2,     1,    -2,     0,     4,   nil,     2,     3,   nil,     2,
-     5,   nil,     5,     7,   nil,   nil,     6,   nil ]
+    -2,     1,    -2,     0,     4,     1,   nil,     3,     4,   nil,
+   nil,     3,     6,   nil,     5,   nil,     8,   nil,   nil,   nil ]
 
 racc_action_default = [
-   -11,   -11,    -1,   -11,   -11,    -2,   -11,    -3,    18,   -11,
-    -4,    -5,    -8,   -11,    -6,    -7,    -9,   -10 ]
+   -13,   -13,    -1,   -13,   -13,    -2,    -7,   -13,    -3,    20,
+    -8,   -13,    -4,    -5,    -9,   -10,   -13,    -6,   -11,   -12 ]
 
 racc_goto_table = [
-     5,    12,     2,    10,     1,   nil,   nil,   nil,    17,   nil,
-    15 ]
+    15,     6,    12,    18,    10,     5,     2,    14,     1 ]
 
 racc_goto_check = [
-     3,     5,     2,     4,     1,   nil,   nil,   nil,     5,   nil,
-     3 ]
+     7,     5,     4,     7,     5,     3,     2,     6,     1 ]
 
 racc_goto_pointer = [
-   nil,     4,     2,    -2,    -4,    -8 ]
+   nil,     8,     6,     3,    -6,    -1,    -4,   -11 ]
 
 racc_goto_default = [
-   nil,   nil,   nil,   nil,   nil,   nil ]
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
@@ -67,14 +65,16 @@ racc_reduce_table = [
   3, 8, :_reduce_4,
   1, 10, :_reduce_5,
   2, 10, :_reduce_6,
-  4, 9, :_reduce_7,
-  3, 9, :_reduce_8,
-  2, 11, :_reduce_9,
-  3, 11, :_reduce_10 ]
+  1, 9, :_reduce_none,
+  2, 9, :_reduce_none,
+  3, 11, :_reduce_9,
+  1, 12, :_reduce_none,
+  2, 12, :_reduce_none,
+  2, 13, :_reduce_12 ]
 
-racc_reduce_n = 11
+racc_reduce_n = 13
 
-racc_shift_n = 18
+racc_shift_n = 20
 
 racc_token_table = {
   false => 0,
@@ -114,8 +114,10 @@ Racc_token_to_s_table = [
   "$start",
   "feature",
   "feature_title",
-  "scenario",
+  "scenario_list",
   "description",
+  "scenario",
+  "step_definition_list",
   "step_definition" ]
 
 Racc_debug_parser = false
@@ -126,28 +128,28 @@ Racc_debug_parser = false
 
 module_eval(<<'.,.,', 'feature_parser.racc', 4)
   def _reduce_1(val, _values, result)
-      @result.push Feature.new  
+    puts val.inspect;  @result.push Feature.new  
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 5)
   def _reduce_2(val, _values, result)
-      @result.push Feature.new 
+    puts val.inspect;  @result.push Feature.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 7)
   def _reduce_3(val, _values, result)
-     
+    puts val.inspect; 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 8)
   def _reduce_4(val, _values, result)
-     
+    puts val.inspect; 
     result
   end
 .,.,
@@ -166,30 +168,24 @@ module_eval(<<'.,.,', 'feature_parser.racc', 11)
   end
 .,.,
 
-module_eval(<<'.,.,', 'feature_parser.racc', 13)
-  def _reduce_7(val, _values, result)
-      @result.push Scenario.new(@steps); @steps = Array.new 
-    result
-  end
-.,.,
+# reduce 7 omitted
 
-module_eval(<<'.,.,', 'feature_parser.racc', 14)
-  def _reduce_8(val, _values, result)
-      @result.push Scenario.new(@steps); @steps = Array.new 
-    result
-  end
-.,.,
+# reduce 8 omitted
 
-module_eval(<<'.,.,', 'feature_parser.racc', 16)
+module_eval(<<'.,.,', 'feature_parser.racc', 18)
   def _reduce_9(val, _values, result)
-      @steps << StepDefinition.new 
+    puts val.inspect;  @result.push Scenario.new(@steps); @steps = Array.new 
     result
   end
 .,.,
 
-module_eval(<<'.,.,', 'feature_parser.racc', 17)
-  def _reduce_10(val, _values, result)
-      @steps << StepDefinition.new  
+# reduce 10 omitted
+
+# reduce 11 omitted
+
+module_eval(<<'.,.,', 'feature_parser.racc', 24)
+  def _reduce_12(val, _values, result)
+    puts val.inspect;  @steps << StepDefinition.new 
     result
   end
 .,.,
