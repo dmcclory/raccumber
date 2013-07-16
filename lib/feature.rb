@@ -6,4 +6,10 @@ class Feature
 
   attr_reader :scenarios
 
+  def evaluate
+    @scenarios.map {|e|
+      e.evaluate
+    }
+  end
+
 end

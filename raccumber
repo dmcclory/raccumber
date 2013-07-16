@@ -24,3 +24,7 @@ feature_files.each do |f|
   features = Raccumber::FeatureParser.new.parse scenarios
   puts features.inspect
 end
+
+features.each do |f|
+  puts f.evaluate
+end
