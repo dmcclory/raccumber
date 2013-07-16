@@ -11,7 +11,7 @@ class Scenario
     puts "  #{name}"
     results = @steps.map { |s| s.evaluate }
     results.zip(@steps).each do |result, step|
-      puts "    #{result}: #{step.text}"
+      puts "    #{step.text}"
       return result if ["undefined", "failure"].include? result
     end
     return "success"
