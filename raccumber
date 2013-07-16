@@ -21,10 +21,9 @@ features = []
 feature_files.each do |f|
   text = File.read f
   scenarios = fs.tokenize text
-  features = Raccumber::FeatureParser.new.parse scenarios
-  puts features.inspect
+  features << Raccumber::FeatureParser.new.parse(scenarios).first
 end
 
 features.each do |f|
-  puts f.evaluate
+  f.evaluate
 end
