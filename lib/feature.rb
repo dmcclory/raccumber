@@ -9,7 +9,7 @@ class Feature
   attr_reader :scenarios
 
   def evaluate
-    puts "Evaluating: #{@feature_name}"
+    puts "\nEvaluating: #{@feature_name}"
     results = @scenarios.map {|e|
       e.evaluate
     }
