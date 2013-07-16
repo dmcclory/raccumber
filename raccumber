@@ -2,9 +2,11 @@
 require 'rake'
 require 'pry'
 
-require_relative './lib/raccumber/step_definitions'
-require_relative './lib/raccumber/feature_scanner'
-require_relative './lib/raccumber/feature_parser'
+$LOAD_PATH.unshift "lib"
+
+require 'raccumber/step_definitions'
+require 'raccumber/feature_scanner'
+require 'raccumber/feature_parser'
 
 step_definition_files = FileList.new "features/**/*.rb"
 
