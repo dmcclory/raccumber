@@ -10,6 +10,6 @@ When /I combine them/ do |name|
   name
 end
 
-Then /I get a third object with text (.*)/ do |name|
+Then /I should get a third object with text (.*)/ do |name|
   name
 end
