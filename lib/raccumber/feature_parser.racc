@@ -3,10 +3,10 @@ class Raccumber::FeatureParser
 rule
 
 feature : feature_title { @result.push Feature.new  }
-        | feature_title scenario_list { @result.push Feature.new(@scenarios); @scenarios = Array.new }
+        | feature_title scenario_list { @result.push Feature.new(val[0], @scenarios); @scenarios = Array.new }
 
-feature_title : FEAT_KEYWORD TEXT { }
-              | FEAT_KEYWORD TEXT description { }
+feature_title : FEAT_KEYWORD TEXT { result = val[1] }
+              | FEAT_KEYWORD TEXT description { result = val[1] }
 
 description: TEXT { }
            | description TEXT { }
@@ -16,7 +16,7 @@ scenario_list
   | scenario_list scenario
 
 scenario 
-  : SCEN_KEYWORD TEXT step_definition_list { @scenarios.push Scenario.new(@steps); @steps = Array.new }
+  : SCEN_KEYWORD TEXT step_definition_list { @scenarios.push Scenario.new(val[1], @steps); @steps = Array.new }
 
 step_definition_list 
   : step_definition

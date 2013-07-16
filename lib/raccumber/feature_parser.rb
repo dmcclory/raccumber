@@ -136,21 +136,21 @@ module_eval(<<'.,.,', 'feature_parser.racc', 4)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 5)
   def _reduce_2(val, _values, result)
-     @result.push Feature.new(@scenarios); @scenarios = Array.new 
+     @result.push Feature.new(val[0], @scenarios); @scenarios = Array.new 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 7)
   def _reduce_3(val, _values, result)
-     
+     result = val[1] 
     result
   end
 .,.,
 
 module_eval(<<'.,.,', 'feature_parser.racc', 8)
   def _reduce_4(val, _values, result)
-     
+     result = val[1] 
     result
   end
 .,.,
@@ -175,7 +175,7 @@ module_eval(<<'.,.,', 'feature_parser.racc', 11)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 18)
   def _reduce_9(val, _values, result)
-     @scenarios.push Scenario.new(@steps); @steps = Array.new 
+     @scenarios.push Scenario.new(val[1], @steps); @steps = Array.new 
     result
   end
 .,.,
