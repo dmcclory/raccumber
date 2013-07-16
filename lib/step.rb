@@ -1,4 +1,4 @@
-class StepDefinition
+class Step
   def initialize(step_text)
     @text = step_text
   end

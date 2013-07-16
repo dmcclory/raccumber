@@ -12,7 +12,7 @@ module_eval(<<'...end feature_parser.racc/module_eval...', 'feature_parser.racc'
 
 require 'feature'
 require 'scenario'
-require 'step_definition'
+require 'step'
 require 'pry'
 
 def parse(tokens)
@@ -186,7 +186,7 @@ module_eval(<<'.,.,', 'feature_parser.racc', 18)
 
 module_eval(<<'.,.,', 'feature_parser.racc', 24)
   def _reduce_12(val, _values, result)
-     @steps << StepDefinition.new(val[1].strip) 
+     @steps << Step.new(val[1].strip) 
     result
   end
 .,.,

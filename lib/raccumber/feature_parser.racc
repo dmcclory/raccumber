@@ -22,7 +22,7 @@ step_definition_list
   : step_definition
   | step_definition_list step_definition         
 
-step_definition : STEP_KEYWORD TEXT { @steps << StepDefinition.new(val[1].strip) }
+step_definition : STEP_KEYWORD TEXT { @steps << Step.new(val[1].strip) }
 
 end
 
@@ -30,7 +30,7 @@ end
 
 require 'feature'
 require 'scenario'
-require 'step_definition'
+require 'step'
 require 'pry'
 
 def parse(tokens)
