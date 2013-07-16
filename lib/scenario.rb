@@ -12,7 +12,8 @@ class Scenario
     results = @steps.map { |s| s.evaluate }
     results.zip(@steps).each do |result, step|
       puts "    #{result}: #{step.text}"
-      break if result == "undefined" or result == "FAIL"
+      return result if ["undefined", "failure"].include? result
     end
+    return "success"
   end
 end

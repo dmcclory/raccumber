@@ -10,9 +10,13 @@ class Feature
 
   def evaluate
     puts "Evaluating: #{@feature_name}"
-    @scenarios.map {|e|
+    results = @scenarios.map {|e|
       e.evaluate
     }
+    successes  = results.select {|e| e == "success"}.count
+    failures  = results.select {|e| e == "failure"}.count
+    undefined = results.select {|e| e == "undefined"}.count
+    return [successes, failures, undefined]
   end
 
 end

@@ -10,7 +10,7 @@ class Step
     return "undefined" if regex.nil?
     match_data = regex.match @text
     r = block.call *match_data.captures
-    success = r ? "PASS" : "FAIL"
+    success = r ? "success" : "failure"
     return r
   end
 

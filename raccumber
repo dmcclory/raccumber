@@ -24,6 +24,8 @@ feature_files.each do |f|
   features << Raccumber::FeatureParser.new.parse(scenarios).first
 end
 
-features.each do |f|
-  f.evaluate
+results = features.inject([0,0,0]) do |m, f|
+  m.zip(f.evaluate).map {|a, b| a + b }
 end
+
+puts "#{results[0]} successes, #{results[1]} failures, #{results[2]} undefined"
