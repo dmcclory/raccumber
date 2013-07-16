@@ -17,3 +17,11 @@ end
 When /I call a method that doesn't exist/ do
   String.oh_no_i_left_soda_in_the_freezer_again
 end
+
+When /I downcase it/ do
+  @result = @first.downcase
+end
+
+Then /I should get an object with text (.)/ do |name|
+  @result == name
+end
