@@ -9,8 +9,12 @@ class Step
     regex, block = @@regex_block_pairs.select {|k, v| k.match @text }.first
     return "undefined" if regex.nil?
     match_data = regex.match @text
-    r = block.call *match_data.captures
-    success = r ? "success" : "failure"
+    begin
+      r = block.call *match_data.captures
+      success = r ? "success" : "failure"
+    rescue
+      return "failure"
+    end
     return r
   end
 
