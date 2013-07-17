@@ -1,4 +1,8 @@
+require 'boom/color'
 class Step
+
+  include Boom::Color
+
   def initialize(step_text)
     @text = step_text
   end
