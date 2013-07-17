@@ -19,4 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "boom", "~> 0.3"
+  s.add_runtime_dependency "rake"
+  s.add_development_dependency "pry"
+  s.add_development_dependency "racc"
 end
