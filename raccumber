@@ -4,6 +4,9 @@ require 'pry'
 
 $LOAD_PATH.unshift "lib"
 
+require 'step'
+require 'scenario'
+require 'feature'
 require 'raccumber/step_definitions'
 require 'raccumber/feature_scanner'
 require 'raccumber/feature_parser'
